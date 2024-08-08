@@ -1,2 +1,8 @@
-node_modules
+# Node.js modules
+node_modules/
+
+# Environment configuration files
 .env
+
+# Logs
+*.log

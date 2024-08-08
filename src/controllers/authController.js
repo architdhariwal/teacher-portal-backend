@@ -35,10 +35,11 @@ exports.forgotPassword = async (req, res) => {
     }
     const resetToken = crypto.randomBytes(20).toString('hex');
     user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 600*1000; // 10 minutes
+    user.resetPasswordExpires = Date.now() + 600 * 1000; // 10 minutes
     await user.save();
 
-    const resetUrl = `http://${req.headers.host}/api/auth/reset-password/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password/${resetToken}`;
+    
     let transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,

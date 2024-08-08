@@ -9,11 +9,11 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
-// app.use(cors());
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://teacher-portal-frontend.vercel.app/', 
-  methods: ["GET","PUT","PATCH","POST","DELETE"]
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'https://teacher-portal-frontend.vercel.app/', 
+//   methods: ["GET","PUT","PATCH","POST","DELETE"]
+// }));
 app.use(passport.initialize());
 
 app.use('/api/auth', authRoutes);
